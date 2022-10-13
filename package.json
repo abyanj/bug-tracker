@@ -11,12 +11,13 @@
   "license": "MIT",
   "dependencies": {
     "colors": "^1.4.0",
-    "dotenv": "^16.0.1",
+    "dotenv": "^16.0.3",
+    "env": "^0.0.2",
     "express": "^4.18.1",
     "express-async-handler": "^1.2.0",
     "mongoose": "^6.5.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.20"
   }
 }
