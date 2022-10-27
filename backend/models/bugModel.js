@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const goalSchema = mongoose.Schema(
+const bugSchema = mongoose.Schema(
   {
     user: {
       type: mongoose.Schema.Types.ObjectId,
@@ -18,4 +18,4 @@ const goalSchema = mongoose.Schema(
   }
 )
 
-module.exports = mongoose.model('Goal', goalSchema)
+module.exports = mongoose.model('bug', bugSchema)
