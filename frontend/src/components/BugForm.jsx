@@ -1,18 +1,30 @@
 import {useState} from 'react'
 import {useSelector, useDispatch} from 'react-redux' 
-
+import {createBug} from '../features/bugs/bugSlice'
+ 
 function BugForm() {
   const [text, setText] = useState('')
 
+  const dispatch = useDispatch()
 
-  const onSubmit = e => {
+
+  const onSubmit = (e) => {
     e.preventDefault()
+
+    dispatch(createBug({text}))
+    setText('')
   }
   return <section className='form'>
     <form onSubmit={onSubmit}>
       <div className="form-group">
         <label htmlFor="text"> Bugs </label>
         <input type="text" name='text' id='text' value={text} onChange={(e)=>setText(e.target.value)}/>
+
+      </div>
+      <div className="form-group">
+        <button className="btn btn-block" type="submite">
+          Add Bug
+        </button>
       </div>
     </form>
   </section>
