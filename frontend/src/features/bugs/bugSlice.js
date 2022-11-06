@@ -23,16 +23,37 @@ export const createBug = createAsyncThunk('bugs/create', async(bugData, thunkApi
 }) 
 
 //Get user bugs
-export const getGugs = createAsyncThunk('bugs/getAll', async (_, 
+export const getBugs = createAsyncThunk('bugs/getAll', async (_, 
   thunkApi) => {
     try {
       const token = thunkApi.getState().auth.user.token
-      return await bugService.createBug( token)
+      return await bugService.getBugs(token)
     } catch (error) {
       const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
       return thunkApi.rejectWithValue(message)
     }
   })
+
+
+  // Delete user bug
+export const deleteBug = createAsyncThunk(
+  'bugs/delete',
+  async (id, thunkApi) => {
+    try {
+      const token = thunkApi.getState().auth.user.token
+      return await bugService.deleteBug(id, token)
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString()
+      return thunkApi.rejectWithValue(message)
+    }
+  }
+)
+
 
 export const bugSlice = createSlice({
   name: 'bug',
@@ -52,6 +73,36 @@ export const bugSlice = createSlice({
         state.bugs.push(action.payload)
       })
       .addCase(createBug.rejected, (state, action) =>{
+        state.isLoading = false
+        state.isError = true
+        state.message = action.payload
+      })
+      
+      .addCase(getBugs.pending, (state) => {
+        state.isLoading = true
+
+      })
+      .addCase(getBugs.fulfilled, (state, action) =>{
+        state.isLoading = false
+        state.isSuccess = true
+        state.bugs = action.payload
+      })
+      .addCase(getBugs.rejected, (state, action) =>{
+        state.isLoading = false
+        state.isError = true
+        state.message = action.payload
+      })
+
+      .addCase(deleteBug.pending, (state) => {
+        state.isLoading = true
+
+      })
+      .addCase(deleteBug.fulfilled, (state, action) =>{
+        state.isLoading = false
+        state.isSuccess = true
+        state.bugs = state.bugs.filter((bug) => bug._id !== action.payload.id)
+      })
+      .addCase(deleteBug.rejected, (state, action) =>{
         state.isLoading = false
         state.isError = true
         state.message = action.payload

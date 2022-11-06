@@ -9,6 +9,11 @@
 body {
   font-family: 'Poppins', sans-serif;
   height: 100vh;
+  background-color: rgb(0, 48, 65);
+}
+.logo{
+  font-weight: 600;
+  font-size: large;
 }
 
 a {
@@ -40,7 +45,10 @@ h3 {
   max-width: 960px;
   margin: 0 auto;
   padding: 0 20px;
+  height: 100%;
+  padding-bottom: 280px;
   text-align: center;
+  background-color: rgb(19, 151, 195);
 }
 
 .header {
@@ -48,8 +56,9 @@ h3 {
   justify-content: space-between;
   align-items: center;
   padding: 20px 0;
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 1px solid #020000;
   margin-bottom: 60px;
+  
 }
 
 .header ul {
@@ -83,29 +92,42 @@ h3 {
 }
 
 .heading p {
-  color: #828282;
+  color: #2d2c2c;
 }
 
 .bugs {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1px;
 }
 
 .bug {
-  background-color: #f4f4f4;
+  background-color: rgb(78, 121, 145);
   margin: 10px 0;
-  padding: 20px 0 10px;
+  padding: 10px 0 5px;
   position: relative;
 }
 
 .bug .close {
   position: absolute;
-  top: 10px;
-  right: 15px;
+  top: 1px;
+  right: 1px;
   cursor: pointer;
   border: none;
   background: none;
+  padding: 5px 1px;
+  border: none;
+  border-radius: 5px;
+  background: rgb(17, 117, 172);
+  color: rgb(0, 0, 0);
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  appearance: button;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .form,
@@ -123,7 +145,7 @@ h3 {
 .form-group select {
   width: 100%;
   padding: 10px;
-  border: 1px solid #e6e6e6;
+  border: 1px solid #000000;
   border-radius: 5px;
   margin-bottom: 10px;
   font-family: inherit;
@@ -139,7 +161,7 @@ h3 {
   padding: 10px 20px;
   border: 1px solid #000;
   border-radius: 5px;
-  background: #000;
+  background: rgb(0, 0, 0);
   color: #fff;
   font-size: 16px;
   font-weight: 700;

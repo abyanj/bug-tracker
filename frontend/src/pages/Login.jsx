@@ -11,7 +11,7 @@ function Login() {
   const [formData, setFormData] = useState({
     
     email: '',
-    passowrd: '',
+    password: '',
     
     })
   const { email, password } = formData
