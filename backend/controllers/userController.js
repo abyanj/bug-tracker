@@ -64,6 +64,25 @@ const loginUser = asyncHandler(async(req, res) => {
   }
 })
 
+
+// get user name
+const getName = asyncHandler(async(req,res) => {
+  
+  const { UserId } = req.body
+
+  const user = await User.findOne({_id: UserId})
+
+  if(user){
+    res.json({name: user.name})
+  }else{
+    res.status(404)
+    throw new Error('User not found')
+  }
+
+
+
+})
+
 // @desc Get User data
 // @route GET /api/users/me
 // @access Private
@@ -84,4 +103,6 @@ module.exports = {
   registerUser, 
   loginUser, 
   getMe,
+  getName,
+
 }

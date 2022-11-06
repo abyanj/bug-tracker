@@ -22,6 +22,14 @@ const login = async (userData) => {
   }
 
   return response.data
+} 
+// user Name
+const getName = async (userId) => {
+  const response = await axios.post(API_URL + 'getName', userId)
+
+
+
+  return response.data
 }
 
 //Logout user
@@ -33,6 +41,7 @@ const authService = {
   register,
   logout,
   login,
+  getName,
 }
 
 

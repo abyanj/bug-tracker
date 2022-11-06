@@ -111,6 +111,6 @@ export const bugSlice = createSlice({
   }
 })
 
-export const {reset } = bugSlice.actions
+export const { reset } = bugSlice.actions
 
 export default bugSlice.reducer

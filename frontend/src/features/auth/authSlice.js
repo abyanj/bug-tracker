@@ -35,6 +35,17 @@ const initialState = {
     
   }
 })
+//User Name
+const getName = createAsyncThunk('auth/name', async(user, thunkApi) => {
+  try {
+    return await authService.getName(user)
+  } catch (error) {
+    const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
+    
+    return thunkApi.rejectWithValue(message)
+    
+  }
+}) 
 
  const logout = createAsyncThunk('auth/logout',
   async () => {
@@ -82,11 +93,25 @@ export const authSlice = createSlice({
         state.message = action.payload
         state.user = null
       })
+      .addCase(getName.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(getName.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isSuccess = true
+        state.user = action.payload
+      })
+      .addCase(getName.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.message = action.payload
+        state.user = null
+      })
 
       .addCase(logout.fulfilled, (state) => {state.user = null })
   },
 })
- export  { logout, register, login}
+ export  { logout, register, login, getName}
  
  export const { reset } = authSlice.actions
  export default authSlice.reducer
